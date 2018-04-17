@@ -11,7 +11,7 @@ The project is under development.
 - [x] Setup development environment on Raspbian
 - [x] Connect to Bennington Public
 - [x] Install docker
-- [ ] Build first docker
+- [ ] Build the first docker app on ARM
 
 ### Ideas
 
@@ -21,10 +21,10 @@ The project is under development.
 ## Table of Contents
 
 - [Info](#info)
-  - [Debian's version](#debians-version)
-  - [OS Release Notes](#os-release-notes)
-  - [Kernel's version](#kernels-version)
-  - [Hardware's version](#hardwares-version)
+  - Debian's version
+  - OS Release Notes
+  - Kernel's version
+  - Hardware's version
 
 ## Info
 
