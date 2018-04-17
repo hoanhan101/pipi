@@ -2,13 +2,13 @@
 
 ## Info
 
-Debian's version
+**Debian's versioni**
 ```
 $ cat /etc/debian_version
 9.4
 ```
 
-OS Release Notes
+**OS Release Notesi**
 ```
 $ cat /etc/os-release
 PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
@@ -22,13 +22,13 @@ SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 ```
 
-Kernel's version
+**Kernel's versioni**
 ```
 $ uname -a
 Linux raspberrypi15 4.14.30-v7+ #1102 SMP Mon Mar 26 16:45:49 BST 2018 armv7l GNU/Linux
 ```
 
-Hardware's version
+**Hardware's version**
 ```
 processor   : 0
 model name  : ARMv7 Processor rev 4 (v7l)
