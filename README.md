@@ -1,5 +1,31 @@
 # pipi
 
+Raspberry Pi 3 playground
+
+## Project Status
+
+The project is under development.
+
+### Tasks
+
+- [x] Setup development environment on Raspbian
+- [x] Connect to Bennington Public
+- [x] Install docker
+- [ ] Build the first docker app on ARM
+
+### Ideas
+
+- [ ] Does the slow wifi connection have something to do with our router setup? Tested with built
+  in model and the one with wifi adapter and had the similar experience.
+
+## Table of Contents
+
+- [Info](#info)
+  - Debian's version
+  - OS Release Notes
+  - Kernel's version
+  - Hardware's version
+
 ## Info
 
 **Debian's version**
