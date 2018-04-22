@@ -1,26 +1,24 @@
 # pipi
 
-Raspberry Pi 3 playground
+Raspberry Pi 3 playground.
+
+> TODO: Project goal?
 
 ## Project Status
 
-The project is under development.
+The project is under development. Currently just testing out Docker, Go, Python and GPIO.
 
 ### Tasks
 
 - [x] Setup development environment on Raspbian
 - [x] Connect to Bennington Public
-- [x] Install docker
-- [ ] Build the first docker app on ARM
-
-### Ideas
-
-- [ ] Does the slow wifi connection have something to do with our router setup? Tested with built
-  in model and the one with wifi adapter and had the similar experience.
+- [x] Install Docker
+- [x] Build a hello-world dockerized application in Go
+- [x] Make a Dockerfile to install Python and GPIO 
 
 ## Table of Contents
 
-- [Info](#info)
+- [Raspberry Pi 3 Info](#info)
   - Debian's version
   - OS Release Notes
   - Kernel's version
