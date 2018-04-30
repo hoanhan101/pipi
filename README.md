@@ -1,8 +1,6 @@
 # pipi
 
-Raspberry Pi 3 playground.
-
-> TODO: Project goal?
+> TODO: Add project goal
 
 ## Project Status
 
@@ -14,7 +12,8 @@ The project is under development. Currently just testing out Docker, Go, Python 
 - [x] Connect to Bennington Public
 - [x] Install Docker
 - [x] Build a hello-world dockerized application in Go
-- [x] Make a Dockerfile to install Python and GPIO 
+- [x] Make a Dockerfile to install Python and GPIO
+- [x] Install Humidity and Temperature Sensor ([Datasheet SHT3x-DIS](https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf))
 
 ## Table of Contents
 
