@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-    problem1.py - Add and multiply two numbers
+    problem1.py - Add, substract, multiply and divide two numbers
     Author: Hoanh An (hoanhan@bennington.edu)
     Date: 01/05/2018
 """
@@ -18,7 +18,7 @@ def add_two_numbers(num1, num2):
         Sum of two numbers:
             - in int if two numbers are int
             - in float if two numbers are float
-            - 0 if not valid
+            - 0 if input is not valid
     """
     if isinstance(num1, int) or isinstance(num1, float):
         if isinstance(num2, int) or isinstance(num2, float):
@@ -38,7 +38,7 @@ def substract_two_numbers(num1, num2):
         Difference of two numbers: 
             - in int if two numbers are int
             - in float if two numbers are float
-            - 0 if not valid
+            - 0 if input is not valid
     """
     if isinstance(num1, int) or isinstance(num1, float):
         if isinstance(num2, int) or isinstance(num2, float):
@@ -59,7 +59,7 @@ def multiply(num, times):
         Product of a number:
             - in int if the number is int
             - in float if the number is float
-            - 0 if not valid
+            - 0 if input is not valid
     """
     if not isinstance(times, int):
         return 0
@@ -82,7 +82,7 @@ def divide(num, times):
     Return:
         Quotient of a number: 
             - in int if the number is int or float
-            - 0 if not valid
+            - 0 if input is not valid
     """
     if num == 0:
         return 0
