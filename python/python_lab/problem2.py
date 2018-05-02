@@ -11,7 +11,7 @@ def get_total_ascii(string):
     Get total ASCII value of all characters in a given string.
 
     Params:
-        string <int>: Input string
+        string <str>: Input string
 
     Return:
         Total of the ASCII value in int. 0 if input is not valid.
