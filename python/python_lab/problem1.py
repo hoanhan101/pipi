@@ -49,7 +49,7 @@ def substract_two_numbers(num1, num2):
 
 def multiply(num, times):
     """
-    Multiple a number by a number of times.
+    Multiply a number by a number of times.
 
     Params:
         num <int>/<float>: Number to multiply
