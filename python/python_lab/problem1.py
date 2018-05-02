@@ -98,12 +98,12 @@ def divide(num, times):
     if num < times:
         return 0
     
-    counter = 0
+    counter = -1
     while num >= 0:
         num -= times
         counter += 1
 
-    return counter - 1
+    return counter
     
     return 0
 
