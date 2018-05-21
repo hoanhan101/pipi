@@ -7,6 +7,7 @@
 """
 
 import RPi.GPIO as GPIO
+import datetime
 import time
 import smbus
 
@@ -90,7 +91,7 @@ def get_reading():
         None
 
     Return:
-        None
+        Tuple of temperature and humidity in float.
     """
     bus.write_byte_data(DEVICE_ADDRESS, 0x24, 0x00)
     time.sleep(0.015)
@@ -103,11 +104,10 @@ def get_reading():
     hum_lsb  = block[4]
     hum_crc  = block[5]
 
-    convert_temperature_reading(temp_msb, temp_lsb)
-    convert_temperature_reading(temp_msb, temp_lsb, 'fahrenheit')
-    convert_humidity_reading(hum_msb, hum_lsb)
+    temp = convert_temperature_reading(temp_msb, temp_lsb)
+    humd = convert_humidity_reading(hum_msb, hum_lsb)
 
-    print(hex(temp_crc), hex(hum_crc))
+    return temp, humd
 
 def convert_temperature_reading(temp_msb, temp_lsb, mode='celsius'):
     """
@@ -119,7 +119,7 @@ def convert_temperature_reading(temp_msb, temp_lsb, mode='celsius'):
         mode <str>    : Temperature in Celsius of Fahrenheit
 
     Return:
-        None
+        Temperature value in float.
     """
     raw_temp = (temp_msb << 8) + temp_lsb
 
@@ -128,7 +128,7 @@ def convert_temperature_reading(temp_msb, temp_lsb, mode='celsius'):
     else:
         temp = -49 + 315.0 * (raw_temp / ((2**16) - 1))
 
-    print(str(round(temp, 2)))
+    return round(temp, 2)
 
 def convert_humidity_reading(hum_msb, hum_lsb):
     """
@@ -139,14 +139,13 @@ def convert_humidity_reading(hum_msb, hum_lsb):
         hum_lsb <int>: Humidity LSB
 
     Return:
-        None
-
+        Humidity value in float.
     """
     raw_hum = (hum_msb << 8) + hum_lsb
 
     hum = 100.0 * (raw_hum / ((2**16) - 1))
 
-    print(str(round(hum, 2)))
+    return round(hum, 2)
 
 def clear_status():
     """
@@ -172,8 +171,47 @@ def soft_reset():
     """
     bus.write_byte_data(DEVICE_ADDRESS, 0x30, 0xA2)
 
+def write_to_file(filename, data):
+    """
+    Write data to file.
+
+    Params:
+        filename: Target filename
+        data: Data to write
+
+    Return:
+        None
+    """
+    with open(filename, 'a') as output_file:
+        print(data)
+        output_file.write(data)
+
+def read_from_file(filename):
+    """
+    Read from file.
+
+    Params:
+        filename: Target filename
+
+    Return:
+        None
+    """
+    with open(filename, 'r') as output_file:
+        line = output_file.readline()
+        data = line.split(',')
+        while line:
+            print(data)
+            line = output_file.readline()
+
 if __name__ == '__main__':
-    get_reading()
+    temp, humd = get_reading()
+    result = str(datetime.datetime.now()) + ',' + str(temp) + ',' + str(humd) + ',' + '\n'
+
+    # while True:
+        # write_to_file('test.txt', result)
+        # time.sleep(15)
+
+    read_from_file('test.txt')
     # get_status()
     # time.sleep(0.015)
     # clear_status()
