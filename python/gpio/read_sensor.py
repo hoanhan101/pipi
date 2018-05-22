@@ -85,13 +85,14 @@ def get_status():
 
 def get_reading():
     """
-    TODO
+    Get temperature and humidity reading.
 
     Params:
         None
 
     Return:
-        Tuple of temperature and humidity in float.
+        Tuple of temperature and humidity in float if valid.
+        0, 0 if not.
     """
     bus.write_byte_data(DEVICE_ADDRESS, 0x24, 0x00)
     time.sleep(0.015)
@@ -104,10 +105,12 @@ def get_reading():
     hum_lsb  = block[4]
     hum_crc  = block[5]
 
-    temp = convert_temperature_reading(temp_msb, temp_lsb)
-    humd = convert_humidity_reading(hum_msb, hum_lsb)
-
-    return temp, humd
+    if temp_cr == check_crc8(temp_msb, temp_lsb) and hum_crc == check_crc8(hum_msb, hum_lsb):
+        temp = convert_temperature_reading(temp_msb, temp_lsb)
+        humd = convert_humidity_reading(hum_msb, hum_lsb)
+        return temp, humd
+    else:
+        return 0, 0
 
 def convert_temperature_reading(temp_msb, temp_lsb, mode='celsius'):
     """
@@ -146,6 +149,31 @@ def convert_humidity_reading(hum_msb, hum_lsb):
     hum = 100.0 * (raw_hum / ((2**16) - 1))
 
     return round(hum, 2)
+
+def check_crc8(msb, lsb):
+    """
+    Calculate checksum CRC code for a given msb and lsb.
+
+    Params:
+        msb <int>: MSB
+        lsb <int>: LSB
+
+    Return:
+        Hex value of CRC
+    """
+    buffer = [msb, lsb]
+    polynomial = 0x31
+    crc = 0xFF
+    index = 0
+
+    for index in range(0, len(buffer)):
+        crc ^= buffer[index] # ^ means XOR
+        for i in range(8, 0, -1):
+            if crc & 0x80:
+                crc = (crc << 1) ^ polynomial
+            else:
+                crc = (crc << 1)
+    return hex(crc & 0xFF)
 
 def clear_status():
     """
@@ -204,14 +232,15 @@ def read_from_file(filename):
             line = output_file.readline()
 
 if __name__ == '__main__':
-    temp, humd = get_reading()
-    result = str(datetime.datetime.now()) + ',' + str(temp) + ',' + str(humd) + ',' + '\n'
+    # temp, humd = get_reading()
+    # result = str(datetime.datetime.now()) + ',' + str(temp) + ',' + str(humd) + ',' + '\n'
 
     # while True:
         # write_to_file('test.txt', result)
         # time.sleep(15)
 
-    read_from_file('test.txt')
+    # read_from_file('test.txt')
+    # print(check_crc8(0xB1, 0xEF))
     # get_status()
     # time.sleep(0.015)
     # clear_status()
